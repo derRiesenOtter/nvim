@@ -55,9 +55,12 @@ vim.pack.add({
   { src = "https://github.com/nvim-lua/plenary.nvim" },
   { src = "https://github.com/nvim-flutter/flutter-tools.nvim" },
   { src = "https://github.com/obsidian-nvim/obsidian.nvim" },
+  { src = "https://github.com/mfussenegger/nvim-dap" },
+  { src = "https://github.com/theHamsta/nvim-dap-virtual-text" },
 })
 
 require "mini.icons".setup()
+require "nvim-dap-virtual-text".setup()
 require "obsidian".setup({
   legacy_commands = false,
   workspaces = {
@@ -170,6 +173,14 @@ vim.keymap.set({ "i", "s" }, "<C-j>", function() require "luasnip".jump(1) end, 
 vim.keymap.set({ "i", "s" }, "<C-k>", function() require "luasnip".jump(-1) end, { silent = true })
 vim.keymap.set({ "n", "x" }, "s", function() require "flash".jump() end)
 vim.keymap.set({ "o" }, "r", function() require "flash".remote() end)
+
+vim.keymap.set('n', '<Leader>dc', function() require('dap').continue() end)
+vim.keymap.set('n', '<Down>', function() require('dap').step_over() end)
+vim.keymap.set('n', '<Right>', function() require('dap').step_into() end)
+vim.keymap.set('n', '<Left>', function() require('dap').step_out() end)
+vim.keymap.set('n', '<Leader>db', function() require('dap').toggle_breakpoint() end)
+vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
+vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
 
 vim.lsp.config('lua_ls', {
   settings = {
