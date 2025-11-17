@@ -40,7 +40,7 @@ return {
 					},
 				})
 				vim.keymap.set("n", "<C-f>", "}j")
-				vim.keymap.set("n", "<C-d>", "{{j")
+				vim.keymap.set("n", "<C-a>", "{{j")
 			end,
 		})
 	end,

@@ -1,14 +1,26 @@
 return {
 	"quarto-dev/quarto-nvim",
-	ft = "quarto",
+	ft = { "quarto", "markdown" },
 	dependencies = {
 		"jmbuhr/otter.nvim",
 		"nvim-treesitter/nvim-treesitter",
 	},
 	config = function()
 		require("quarto").setup({
+			lspFeatures = {
+				languages = { "python" },
+				chunks = "all",
+				diagnostics = {
+					enabled = true,
+					triggers = { "BufWritePost" },
+				},
+				completion = {
+					enabled = true,
+				},
+			},
 			codeRunner = {
-				default_method = "iron",
+				enabled = true,
+				default_method = "molten",
 			},
 		})
 		vim.api.nvim_create_autocmd("BufEnter", {
@@ -23,7 +35,7 @@ return {
 				vim.keymap.set("n", "<leader>p", ":QuartoPreview<CR>")
 
 				vim.keymap.set("n", "<C-f>", "/```{<CR>j")
-				vim.keymap.set("n", "<C-d>", "?```{<CR>nj")
+				vim.keymap.set("n", "<C-a>", "?```{<CR>nj")
 			end,
 		})
 	end,
