@@ -1,7 +1,7 @@
 return {
 	{
 		"benlubas/molten-nvim",
-		version = "^1.0.0",
+		commit = "4fd7be6a12b5efda5179db642f13bad60893acca",
 		dependencies = { "3rd/image.nvim" },
 		build = ":UpdateRemotePlugins",
 		config = function()
