@@ -1,9 +1,19 @@
+local langs = { "lua", "python", "cpp", "markdown", "markdown_inline" }
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
 		branch = "main",
 		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter").install(langs)
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = langs,
+				callback = function()
+					vim.treesitter.start()
+				end,
+			})
+		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
@@ -11,7 +21,6 @@ return {
 		init = function()
 			vim.g.no_plugin_maps = true
 		end,
-		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("nvim-treesitter-textobjects").setup({
 				select = {
@@ -24,23 +33,85 @@ return {
 					include_surrounding_whitespace = false,
 				},
 			})
-		end,
-		keys = {
-			{
-				"af",
-				function()
-					require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
-				end,
-				mode = { "x", "o" },
-			},
+			-- methods
+			vim.keymap.set({ "x", "o" }, "am", function()
+				require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+			end)
+			vim.keymap.set({ "x", "o" }, "im", function()
+				require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "]m", function()
+				require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "]M", function()
+				require("nvim-treesitter-textobjects.move").goto_next_end("@function.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "[m", function()
+				require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "[M", function()
+				require("nvim-treesitter-textobjects.move").goto_previous_end("@function.outer", "textobjects")
+			end)
 
-			{
-				"]f",
-				function()
-					require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
-				end,
-				mode = { "n", "x", "o" },
-			},
-		},
+			-- classes
+			vim.keymap.set({ "x", "o" }, "ac", function()
+				require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
+			end)
+			vim.keymap.set({ "x", "o" }, "ic", function()
+				require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "]c", function()
+				require("nvim-treesitter-textobjects.move").goto_next_start("@class.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "]C", function()
+				require("nvim-treesitter-textobjects.move").goto_next_end("@class.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "[c", function()
+				require("nvim-treesitter-textobjects.move").goto_previous_start("@class.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "[C", function()
+				require("nvim-treesitter-textobjects.move").goto_previous_end("@class.outer", "textobjects")
+			end)
+
+			-- code blocks
+			vim.keymap.set({ "n", "x", "o" }, "ak", function()
+				require("nvim-treesitter-textobjects.select").select_textobject("@code_cell.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "ik", function()
+				require("nvim-treesitter-textobjects.select").select_textobject("@code_cell.inner", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "]k", function()
+				require("nvim-treesitter-textobjects.move").goto_next_start("@code_cell.inner", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "]K", function()
+				require("nvim-treesitter-textobjects.move").goto_next_end("@code_cell.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "[k", function()
+				require("nvim-treesitter-textobjects.move").goto_previous_start("@code_cell.inner", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "[K", function()
+				require("nvim-treesitter-textobjects.move").goto_previous_end("@code_cell.outer", "textobjects")
+			end)
+
+			-- loops
+			vim.keymap.set({ "n", "x", "o" }, "ao", function()
+				require("nvim-treesitter-textobjects.select").select_textobject("@loop.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "io", function()
+				require("nvim-treesitter-textobjects.select").select_textobject("@loop.inner", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "]o", function()
+				require("nvim-treesitter-textobjects.move").goto_next_start("@loop.inner", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "]O", function()
+				require("nvim-treesitter-textobjects.move").goto_next_end("@loop.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "[o", function()
+				require("nvim-treesitter-textobjects.move").goto_previous_start("@loop.inner", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "[O", function()
+				require("nvim-treesitter-textobjects.move").goto_previous_end("@loop.outer", "textobjects")
+			end)
+		end,
 	},
 }

@@ -28,36 +28,26 @@ return {
 			vim.g.molten_output_win_max_height = 20
 			vim.keymap.set(
 				"n",
-				"<leader>je",
-				":MoltenEvaluateOperator<CR>",
-				{ desc = "evaluate operator", silent = true }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>jo",
+				"<localleader>o",
 				":noautocmd MoltenEnterOutput<CR>",
 				{ desc = "open output window", silent = true }
 			)
-			vim.keymap.set("n", "<leader>jr", ":MoltenReevaluateCell<CR>", { desc = "re-eval cell", silent = true })
-			vim.keymap.set(
-				"v",
-				"<leader>je",
-				":<C-u>MoltenEvaluateVisual<CR>",
-				{ desc = "execute visual selection", silent = true }
-			)
-			vim.keymap.set("n", "<leader>jh", ":MoltenHideOutput<CR>", { desc = "close output window", silent = true })
-			vim.keymap.set("n", "<leader>jd", ":MoltenDelete<CR>", { desc = "delete Molten cell", silent = true })
-			vim.keymap.set("n", "<C-f>", "/```python<CR>j", { desc = "next cell", silent = true })
-			vim.keymap.set("n", "<C-a>", "?```python<CR>nj", { desc = "previous cell", silent = true })
 			vim.keymap.set(
 				"n",
-				"<C-s>",
-				"?```python<CR>jV/`<CR>k:<C-u>MoltenEvaluateVisual<CR>",
-				{ desc = "send cell", silent = true }
+				"<localleader>h",
+				":MoltenHideOutput<CR>",
+				{ desc = "close output window", silent = true }
 			)
-			-- Provide a command to create a blank new Python notebook
-			-- note: the metadata is needed for Jupytext to understand how to parse the notebook.
-			-- if you use another language than Python, you should change it in the template.
+			vim.keymap.set("n", "<localleader>d", ":MoltenDelete<CR>", { desc = "delete Molten cell", silent = true })
+
+			vim.keymap.set("n", "<localleader>s", function()
+				vim.cmd("MoltenEvaluateOperator")
+				vim.schedule(function()
+					local ik = vim.api.nvim_replace_termcodes("ik", true, true, true)
+					vim.api.nvim_feedkeys(ik, "m", false)
+				end)
+			end)
+
 			local default_notebook = [[
   {
     "cells": [
