@@ -5,7 +5,7 @@ return {
 			vim.keymap.set("n", "<leader>b", function()
 				require("dap").toggle_breakpoint()
 			end)
-			vim.keymap.set("n", "<leader>d", function()
+			vim.keymap.set("n", "<leader>c", function()
 				require("dap").continue()
 			end)
 			vim.keymap.set("n", "<down>", function()

@@ -11,16 +11,23 @@ return {
 			code = {
 				__inherited_from = "openai",
 				endpoint = "https://ki-chat.uni-mainz.de/api",
-				model = "Qwen3 Coder 30B",
+				model = "Qwen3 235B VL",
 				api_key_name = "JGU_API_KEY",
 			},
-			qwen = {
+			code_think = {
 				__inherited_from = "openai",
 				endpoint = "https://ki-chat.uni-mainz.de/api",
 				model = "Qwen3 235B Thinking",
 				api_key_name = "JGU_API_KEY",
 			},
+			chat = {
+				__inherited_from = "openai",
+				endpoint = "https://ki-chat.uni-mainz.de/api",
+				model = "GPT OSS 120B",
+				api_key_name = "JGU_API_KEY",
+			},
 		},
+		mode = "legacy",
 	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",

@@ -19,8 +19,9 @@ return {
 
 		-- base opts (you already had this part)
 		opts.completion = {
-			menu = { auto_show = false },
+			menu = { auto_show = true },
 			list = { selection = { preselect = true, auto_insert = false } },
+			documentation = { auto_show = true, auto_show_delay_ms = 0 },
 		}
 		opts.keymap = {
 			["<C-d>"] = { "show", "show_documentation", "hide_documentation" },
@@ -30,41 +31,15 @@ return {
 		opts.snippets = { preset = "luasnip" }
 
 		opts.sources = {
-			default = { "path", "lsp", "snippets" },
+			default = { "path", "lsp", "snippets", "buffer" },
 			per_filetype = {},
 		}
 
 		-- only enable Obsidian source if we’re in a vault
 		if in_vault then
-			opts.sources.per_filetype.markdown = { "obsidian", "path" }
-		else
-			opts.sources.per_filetype.markdown = { "path", "lsp" }
+			opts.sources.per_filetype.markdown = { "obsidian" }
 		end
 
 		return opts
 	end,
 }
--- return {
--- 	"saghen/blink.cmp",
--- 	version = "1.*",
--- 	opts = {
--- 		completion = {
--- 			menu = {
--- 				auto_show = false,
--- 			},
--- 			list = {
--- 				selection = { preselect = true, auto_insert = false },
--- 			},
--- 		},
--- 		keymap = {
--- 			["<C-d>"] = { "show", "show_documentation", "hide_documentation" },
--- 			["<C-n>"] = { "show_and_insert", "select_next" },
--- 			["<C-l>"] = { "accept" },
--- 		},
--- 		snippets = { preset = "luasnip" },
--- 		sources = {
--- 			default = { "path", "lsp", "snippets" },
--- 			per_filetype = { markdown = { "obsidian", "path" } },
--- 		},
--- 	},
--- }
