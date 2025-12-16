@@ -27,15 +27,12 @@ return {
 			pattern = { "*.qmd" },
 			callback = function()
 				local runner = require("quarto.runner")
-				vim.keymap.set("n", "<C-s>", runner.run_cell, { desc = "run cell", silent = true })
-				vim.keymap.set("n", "<leader>sa", runner.run_above, { desc = "run cell and above", silent = true })
-				vim.keymap.set("n", "<leader>sA", runner.run_all, { desc = "run all cells", silent = true })
-				vim.keymap.set("n", "<leader>sl", runner.run_line, { desc = "run line", silent = true })
-				vim.keymap.set("v", "<C-s>", runner.run_range, { desc = "run visual range", silent = true })
-				vim.keymap.set("n", "<leader>p", ":QuartoPreview<CR>")
-
-				vim.keymap.set("n", "<C-f>", "/```{<CR>j")
-				vim.keymap.set("n", "<C-a>", "?```{<CR>nj")
+				vim.keymap.set("n", "<localleader>rc", runner.run_cell, { desc = "run cell", silent = true })
+				vim.keymap.set("n", "<localleader>ra", runner.run_above, { desc = "run cell and above", silent = true })
+				vim.keymap.set("n", "<localleader>rA", runner.run_all, { desc = "run all cells", silent = true })
+				vim.keymap.set("n", "<localleader>rl", runner.run_line, { desc = "run line", silent = true })
+				vim.keymap.set("v", "<localleader>r", runner.run_range, { desc = "run visual range", silent = true })
+				vim.keymap.set("n", "<localleader>p", ":QuartoPreview<CR>")
 			end,
 		})
 	end,

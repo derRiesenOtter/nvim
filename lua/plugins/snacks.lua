@@ -4,6 +4,16 @@ return {
 	lazy = false,
 	opts = {
 		picker = { enabled = true },
+		image = {
+			resolve = function(path, src)
+				if require("obsidian.api").path_is_note(path) then
+					return require("obsidian.api").resolve_image_path(src)
+				end
+			end,
+			doc = {
+				inline = false,
+			},
+		},
 	},
 	config = function()
 		vim.api.nvim_create_autocmd("User", {
@@ -81,13 +91,6 @@ return {
 			desc = "Git Log Line",
 		},
 		{
-			"<leader>gd",
-			function()
-				Snacks.picker.git_diff()
-			end,
-			desc = "Git Diff (Hunks)",
-		},
-		{
 			"<leader>gs",
 			function()
 				Snacks.picker.git_status()
@@ -100,20 +103,6 @@ return {
 				Snacks.picker.git_stash()
 			end,
 			desc = "Git Stash",
-		},
-		{
-			"<leader>gf",
-			function()
-				Snacks.picker.git_log_file()
-			end,
-			desc = "Git Log File",
-		},
-		{
-			"<leader>fn",
-			function()
-				Snacks.picker.notifications()
-			end,
-			desc = "Notification History",
 		},
 		{
 			"gd",
@@ -145,11 +134,32 @@ return {
 			desc = "Goto Implementation",
 		},
 		{
-			"gy",
+			"gt",
 			function()
 				Snacks.picker.lsp_type_definitions()
 			end,
 			desc = "Goto T[y]pe Definition",
+		},
+		{
+			"gq",
+			function()
+				Snacks.picker.qflist()
+			end,
+			desc = "Quickfix List",
+		},
+		{
+			"ga",
+			function()
+				vim.lsp.buf.code_action()
+			end,
+			desc = "Code Actions",
+		},
+		{
+			"gc",
+			function()
+				vim.lsp.buf.rename()
+			end,
+			desc = "Rename",
 		},
 		{
 			"<leader>fk",

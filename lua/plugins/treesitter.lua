@@ -1,4 +1,4 @@
-local langs = { "lua", "python", "cpp", "markdown", "markdown_inline" }
+local langs = { "lua", "python", "cpp", "markdown", "markdown_inline", "json", "yaml" }
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -80,16 +80,16 @@ return {
 			vim.keymap.set({ "n", "x", "o" }, "ik", function()
 				require("nvim-treesitter-textobjects.select").select_textobject("@code_cell.inner", "textobjects")
 			end)
-			vim.keymap.set({ "n", "x", "o" }, "]k", function()
+			vim.keymap.set({ "n", "x", "o" }, "<localleader>f", function()
 				require("nvim-treesitter-textobjects.move").goto_next_start("@code_cell.inner", "textobjects")
 			end)
-			vim.keymap.set({ "n", "x", "o" }, "]K", function()
+			vim.keymap.set({ "n", "x", "o" }, "<localleader>F", function()
 				require("nvim-treesitter-textobjects.move").goto_next_end("@code_cell.outer", "textobjects")
 			end)
-			vim.keymap.set({ "n", "x", "o" }, "[k", function()
+			vim.keymap.set({ "n", "x", "o" }, "<localleader>a", function()
 				require("nvim-treesitter-textobjects.move").goto_previous_start("@code_cell.inner", "textobjects")
 			end)
-			vim.keymap.set({ "n", "x", "o" }, "[K", function()
+			vim.keymap.set({ "n", "x", "o" }, "<localleader>A", function()
 				require("nvim-treesitter-textobjects.move").goto_previous_end("@code_cell.outer", "textobjects")
 			end)
 

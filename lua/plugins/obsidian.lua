@@ -11,43 +11,43 @@ return {
 	opts = {
 		callbacks = {
 			enter_note = function(note)
-				vim.keymap.set("n", "<leader>on", "<cmd>Obsidian new<CR>", {
+				vim.keymap.set("n", "<localleader>on", "<cmd>Obsidian new<CR>", {
 					buffer = note.bufnr,
 					desc = "Obsidian new note",
 				})
-				vim.keymap.set("n", "<leader>ot", "<cmd>Obsidian today<CR>", {
+				vim.keymap.set("n", "<localleader>ot", "<cmd>Obsidian today<CR>", {
 					buffer = note.bufnr,
 					desc = "Obsidian today note",
 				})
-				vim.keymap.set("n", "<leader>oy", "<cmd>Obsidian yesterday<CR>", {
+				vim.keymap.set("n", "<localleader>oy", "<cmd>Obsidian yesterday<CR>", {
 					buffer = note.bufnr,
 					desc = "Obsidian yesterday note",
 				})
-				vim.keymap.set("n", "<leader>oT", "<cmd>Obsidian tomorrow<CR>", {
+				vim.keymap.set("n", "<localleader>oT", "<cmd>Obsidian tomorrow<CR>", {
 					buffer = note.bufnr,
 					desc = "Obsidian tomorrow note",
 				})
-				vim.keymap.set("n", "<leader>od", "<cmd>Obsidian dailies<CR>", {
+				vim.keymap.set("n", "<localleader>od", "<cmd>Obsidian dailies<CR>", {
 					buffer = note.bufnr,
 					desc = "Obsidian dailies picker",
 				})
-				vim.keymap.set("n", "<leader>os", "<cmd>Obsidian tags<CR>", {
+				vim.keymap.set("n", "<localleader>os", "<cmd>Obsidian tags<CR>", {
 					buffer = note.bufnr,
 					desc = "Obsidian tags picker",
 				})
-				vim.keymap.set("n", "<leader>ob", "<cmd>Obsidian backlinks<CR>", {
+				vim.keymap.set("n", "<localleader>ob", "<cmd>Obsidian backlinks<CR>", {
 					buffer = note.bufnr,
 					desc = "Obsidian backlinks picker",
 				})
-				vim.keymap.set("n", "<leader>op", "<cmd>Obsidian paste_img<CR>", {
+				vim.keymap.set("n", "<localleader>op", "<cmd>Obsidian paste_img<CR>", {
 					buffer = note.bufnr,
 					desc = "Obsidian paste image",
 				})
-				vim.keymap.set("n", "<leader>ol", "<cmd>Obsidian links<CR>", {
+				vim.keymap.set("n", "<localleader>ol", "<cmd>Obsidian links<CR>", {
 					buffer = note.bufnr,
 					desc = "Obsidian links picker",
 				})
-				vim.keymap.set("n", "<leader>oi", "<cmd>Obsidian toc<CR>", {
+				vim.keymap.set("n", "<localleader>oi", "<cmd>Obsidian toc<CR>", {
 					buffer = note.bufnr,
 					desc = "Obsidian toc picker",
 				})
