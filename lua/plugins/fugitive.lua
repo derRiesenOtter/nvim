@@ -12,5 +12,9 @@ return {
 		{ "<leader>gd", ":Gdiff<CR>" },
 		{ "<leader>gh", ":G add --patch<CR>" },
 		{ "<leader>gb", ":Git blame<CR>" },
+		{ "<leader>gl", ":Gclog<CR>" },
+		{ "<leader>gx", ":GRemove<CR>" },
+		{ "<leader>gm", ":GMove " },
+		{ "<leader>gn", ":GRename " },
 	},
 }

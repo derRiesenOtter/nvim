@@ -1,4 +1,4 @@
-local langs = { "lua", "python", "cpp", "markdown", "markdown_inline", "json", "yaml" }
+local langs = { "lua", "python", "cpp", "markdown", "markdown_inline", "json", "yaml", "latex" }
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
