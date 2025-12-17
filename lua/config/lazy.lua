@@ -57,6 +57,7 @@ vim.diagnostic.config({
 
 vim.keymap.set("t", "<ESC>", "<C-\\><C-N>")
 vim.keymap.set("n", "<leader>m", ":make")
+vim.keymap.set("n", "<leader>l", ":b #<CR>")
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*.md", "*.typ" },
