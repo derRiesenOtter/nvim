@@ -32,7 +32,6 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
-		"nvim-mini/mini.pick",
 		"folke/snacks.nvim",
 		"echasnovski/mini.icons",
 		{
