@@ -2,20 +2,23 @@ return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
-	opts = {
-		picker = { enabled = true },
-		image = {
-			resolve = function(path, src)
-				if require("obsidian.api").path_is_note(path) then
-					return require("obsidian.api").resolve_image_path(src)
-				end
-			end,
-			doc = {
-				inline = false,
-			},
-		},
-	},
 	config = function()
+		require("snacks").setup({
+			picker = { enabled = true },
+			notifier = { enabled = true },
+			scroll = { enabled = true },
+			input = { enabled = true },
+			image = {
+				resolve = function(path, src)
+					if require("obsidian.api").path_is_note(path) then
+						return require("obsidian.api").resolve_image_path(src)
+					end
+				end,
+				doc = {
+					inline = false,
+				},
+			},
+		})
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "OilActionsPost",
 			callback = function(event)
@@ -24,6 +27,8 @@ return {
 				end
 			end,
 		})
+		vim.ui.input = Snacks.input
+		vim.ui.select = Snacks.picker.select
 	end,
 	keys = {
 		{
@@ -138,7 +143,7 @@ return {
 			function()
 				Snacks.picker.lsp_type_definitions()
 			end,
-			desc = "Goto T[y]pe Definition",
+			desc = "Goto Type Definition",
 		},
 		{
 			"gq",
@@ -155,7 +160,7 @@ return {
 			desc = "Code Actions",
 		},
 		{
-			"gc",
+			"gn",
 			function()
 				vim.lsp.buf.rename()
 			end,

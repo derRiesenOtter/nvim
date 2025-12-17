@@ -74,10 +74,10 @@ return {
 			end)
 
 			-- code blocks
-			vim.keymap.set({ "n", "x", "o" }, "ak", function()
+			vim.keymap.set({ "x", "o" }, "ak", function()
 				require("nvim-treesitter-textobjects.select").select_textobject("@code_cell.outer", "textobjects")
 			end)
-			vim.keymap.set({ "n", "x", "o" }, "ik", function()
+			vim.keymap.set({ "x", "o" }, "ik", function()
 				require("nvim-treesitter-textobjects.select").select_textobject("@code_cell.inner", "textobjects")
 			end)
 			vim.keymap.set({ "n", "x", "o" }, "<localleader>f", function()
@@ -94,10 +94,10 @@ return {
 			end)
 
 			-- loops
-			vim.keymap.set({ "n", "x", "o" }, "ao", function()
+			vim.keymap.set({ "x", "o" }, "ao", function()
 				require("nvim-treesitter-textobjects.select").select_textobject("@loop.outer", "textobjects")
 			end)
-			vim.keymap.set({ "n", "x", "o" }, "io", function()
+			vim.keymap.set({ "x", "o" }, "io", function()
 				require("nvim-treesitter-textobjects.select").select_textobject("@loop.inner", "textobjects")
 			end)
 			vim.keymap.set({ "n", "x", "o" }, "]o", function()

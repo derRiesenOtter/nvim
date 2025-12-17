@@ -33,7 +33,6 @@ return {
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
 		"nvim-mini/mini.pick",
-		"stevearc/dressing.nvim",
 		"folke/snacks.nvim",
 		"echasnovski/mini.icons",
 		{

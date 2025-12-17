@@ -36,12 +36,24 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = false
 vim.opt.spelllang = "en,de"
-
 vim.opt.smartindent = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.expandtab = true
 vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python3")
+
+vim.diagnostic.config({
+	virtual_text = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "✘",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+		},
+	},
+	severity_sort = true,
+})
 
 vim.keymap.set("t", "<ESC>", "<C-\\><C-N>")
 vim.keymap.set("n", "<leader>m", ":make")
@@ -134,10 +146,9 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 	},
-	install = { colorscheme = { "vague" } },
+	install = { colorscheme = { "gruvbox" } },
 	checker = { enabled = false },
 	change_detection = {
 		enabled = false,
 	},
-	browser = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
 })
