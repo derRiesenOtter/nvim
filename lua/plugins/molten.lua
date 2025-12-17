@@ -28,19 +28,19 @@ return {
 			vim.g.molten_output_win_max_height = 20
 			vim.keymap.set(
 				"n",
-				"<localleader>o",
+				"<localleader>ko",
 				":noautocmd MoltenEnterOutput<CR>",
 				{ desc = "open output window", silent = true }
 			)
 			vim.keymap.set(
 				"n",
-				"<localleader>h",
+				"<localleader>kh",
 				":MoltenHideOutput<CR>",
 				{ desc = "close output window", silent = true }
 			)
-			vim.keymap.set("n", "<localleader>d", ":MoltenDelete<CR>", { desc = "delete Molten cell", silent = true })
+			vim.keymap.set("n", "<localleader>kd", ":MoltenDelete<CR>", { desc = "delete Molten cell", silent = true })
 
-			vim.keymap.set("n", "<localleader>s", function()
+			vim.keymap.set("n", "<localleader>kk", function()
 				vim.cmd("MoltenEvaluateOperator")
 				vim.schedule(function()
 					local ik = vim.api.nvim_replace_termcodes("ik", true, true, true)
