@@ -1,6 +1,11 @@
 return {
 	"tpope/vim-fugitive",
 	keys = {
-		{ "<leader>G", ":G<CR>" },
+		{ "<leader>gg", ":G<CR>" },
+		{ "<leader>ga", ":G add ." },
+		{ "<leader>gp", ":G push" },
+		{ "<leader>gP", ":G pull --rebase" },
+		{ "<leader>gw", ":Gwrite" },
+		{ "<leader>gr", ":Gread" },
 	},
 }
