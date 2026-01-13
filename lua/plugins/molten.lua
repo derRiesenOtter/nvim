@@ -28,58 +28,52 @@ return {
 			vim.g.molten_output_win_max_height = 20
 			vim.keymap.set(
 				"n",
-				"<localleader>ko",
+				"<localleader>o",
 				":noautocmd MoltenEnterOutput<CR>",
 				{ desc = "open output window", silent = true }
 			)
-			vim.keymap.set(
-				"n",
-				"<localleader>kh",
-				":MoltenHideOutput<CR>",
-				{ desc = "close output window", silent = true }
-			)
-			vim.keymap.set("n", "<localleader>kd", ":MoltenDelete<CR>", { desc = "delete Molten cell", silent = true })
+			vim.keymap.set("n", "<localleader>d", ":MoltenDelete<CR>", { desc = "delete Molten cell", silent = true })
 
-			vim.keymap.set("n", "<localleader>kk", function()
+			vim.keymap.set("n", "<localleader>s", function()
 				vim.cmd("MoltenEvaluateOperator")
 				vim.schedule(function()
-					local ik = vim.api.nvim_replace_termcodes("ik", true, true, true)
+					local ik = vim.api.nvim_replace_termcodes("is", true, true, true)
 					vim.api.nvim_feedkeys(ik, "m", false)
 				end)
 			end)
 
 			local default_notebook = [[
-  {
-    "cells": [
-     {
-      "cell_type": "markdown",
-      "metadata": {},
-      "source": [
-        ""
-      ]
-     }
-    ],
-    "metadata": {
-     "kernelspec": {
-      "display_name": "Python 3",
-      "language": "python",
-      "name": "python3"
-     },
-     "language_info": {
-      "codemirror_mode": {
-        "name": "ipython"
-      },
-      "file_extension": ".py",
-      "mimetype": "text/x-python",
-      "name": "python",
-      "nbconvert_exporter": "python",
-      "pygments_lexer": "ipython3"
-     }
-    },
-    "nbformat": 4,
-    "nbformat_minor": 5
-  }
-]]
+	  {
+	    "cells": [
+	     {
+	      "cell_type": "markdown",
+	      "metadata": {},
+	      "source": [
+	        ""
+	      ]
+	     }
+	    ],
+	    "metadata": {
+	     "kernelspec": {
+	      "display_name": "Python 3",
+	      "language": "python",
+	      "name": "python3"
+	     },
+	     "language_info": {
+	      "codemirror_mode": {
+	        "name": "ipython"
+	      },
+	      "file_extension": ".py",
+	      "mimetype": "text/x-python",
+	      "name": "python",
+	      "nbconvert_exporter": "python",
+	      "pygments_lexer": "ipython3"
+	     }
+	    },
+	    "nbformat": 4,
+	    "nbformat_minor": 5
+	  }
+	]]
 
 			local function new_notebook(filename)
 				local path = filename .. ".ipynb"

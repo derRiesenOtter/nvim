@@ -8,9 +8,9 @@ return {
 	config = function()
 		local ls = require("luasnip")
 		require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets" })
-		vim.keymap.set("i", "<C-e>", function()
-			ls.expand()
-		end, { desc = "Expand Snippet" })
+		-- vim.keymap.set("i", "<C-e>", function()
+		-- 	ls.expand()
+		-- end, { desc = "Expand Snippet" })
 		vim.keymap.set("i", "<Tab>", function()
 			if ls.jumpable(1) then
 				ls.jump(1)
