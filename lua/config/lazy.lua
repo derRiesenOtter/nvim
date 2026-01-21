@@ -17,7 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-vim.opt.autoread = true
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.clipboard = "unnamedplus"
@@ -59,13 +58,12 @@ vim.diagnostic.config({
 vim.keymap.set("t", "<ESC>", "<C-\\><C-N>")
 vim.keymap.set("n", "<leader>m", ":make")
 vim.keymap.set("n", "<leader>l", ":b #<CR>")
-vim.keymap.set("i", "<C-f>", "<Right>")
-vim.keymap.set("i", "<C-v>", "<Left>")
+vim.keymap.set("i", "<C-r>", "<Right>")
+vim.keymap.set("i", "<C-e>", "<Left>")
 vim.keymap.set("i", "<C-a>", "<C-o>_")
-vim.keymap.set("i", "<C-e>", "<C-o>$")
-vim.keymap.set("i", "<C-d>", "<C-o>db")
+vim.keymap.set("i", "<C-f>", "<C-o>$")
+vim.keymap.set("i", "<C-b>", "<C-o>b")
 vim.keymap.set("i", "<C-w>", "<C-o>w")
-vim.keymap.set("i", "<C-W>", "<C-o>W")
 vim.keymap.set("n", "<localleader>i", ":IronRepl<CR>")
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {

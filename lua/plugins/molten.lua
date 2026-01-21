@@ -1,7 +1,6 @@
 return {
 	{
 		"benlubas/molten-nvim",
-		commit = "4fd7be6a12b5efda5179db642f13bad60893acca",
 		dependencies = { "3rd/image.nvim" },
 		build = ":UpdateRemotePlugins",
 		config = function()
@@ -20,7 +19,7 @@ return {
 			vim.g.molten_virt_text_output = true
 			vim.g.molten_virt_lines_off_by_1 = true
 			vim.g.molten_cover_empty_lines = true
-			vim.g.molten_image_location = "virt"
+			vim.g.molten_image_location = "float"
 			vim.g.molten_auto_open_output = false
 			vim.g.molten_auto_image_popup = false
 			vim.g.molten_auto_open_html_in_browser = false

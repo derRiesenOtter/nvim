@@ -11,18 +11,18 @@ return {
 		-- vim.keymap.set("i", "<C-e>", function()
 		-- 	ls.expand()
 		-- end, { desc = "Expand Snippet" })
-		vim.keymap.set("i", "<Tab>", function()
+		vim.keymap.set("i", "<C-l>", function()
 			if ls.jumpable(1) then
 				ls.jump(1)
 			else
-				return "<Tab>"
+				return ""
 			end
 		end, { silent = true, expr = true })
-		vim.keymap.set("i", "<S-Tab>", function()
+		vim.keymap.set("i", "<C-h>", function()
 			if ls.jumpable(-1) then
 				ls.jump(-1)
 			else
-				return "<S-Tab>"
+				return ""
 			end
 		end, { silent = true, expr = true })
 	end,

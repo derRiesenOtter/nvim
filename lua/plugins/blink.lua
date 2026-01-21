@@ -26,9 +26,8 @@ return {
 		opts.keymap = {
 			["<C-d>"] = { "show", "show_documentation", "hide_documentation" },
 			["<C-n>"] = { "show_and_insert", "select_next" },
-			["<C-l>"] = { "accept" },
 			["<C-q>"] = { "cancel" },
-      ['<C-e>'] = false,
+			["<C-e>"] = false,
 		}
 		opts.snippets = { preset = "luasnip" }
 
