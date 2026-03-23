@@ -81,20 +81,18 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "python",
-	command = "setlocal makeprg=python\\ %",
-	vim.keymap.set("n", "<leader>t", ":!pytest %"),
-})
+vim.api.nvim_create_autocmd("LspAttach", {
+	pattern = "*.typ",
+	callback = function(args)
+		local fname = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(args.buf), ":t")
+		if fname ~= "main.typ" then
+			return
+		end
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "R",
-	command = "setlocal makeprg=Rscript\\ %",
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "cpp",
-	command = "setlocal makeprg=clang++\\ -std=c++20\\ -Wall\\ -Wextra\\ -Wpedantic\\ -Wshadow\\ %\\ -o\\ %<\\ &&\\ ./%<",
+		vim.defer_fn(function()
+			vim.cmd("LspTinymistPinMain")
+		end, 200)
+	end,
 })
 
 -- automatically import output chunks from a jupyter notebook

@@ -6,6 +6,7 @@ return {
 			r = { "air" },
 			markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
 			python = { "isort", "black" },
+			typst = { "typstyle" },
 		},
 		format_on_save = {
 			timeout_ms = 500,

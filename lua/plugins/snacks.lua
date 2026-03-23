@@ -56,7 +56,7 @@ return {
 					end
 				end,
 				doc = {
-					inline = true,
+					inline = false,
 					max_width = 80,
 					max_height = 30,
 				},

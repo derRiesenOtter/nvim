@@ -4,7 +4,7 @@ return {
 		dependencies = { "3rd/image.nvim" },
 		build = ":UpdateRemotePlugins",
 		config = function()
-			vim.keymap.set("n", "<leader>ji", function()
+			vim.keymap.set("n", "<localleader>mi", function()
 				local venv = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX")
 				if venv ~= nil then
 					venv = string.match(venv, "/.+/(.+)")
@@ -97,6 +97,11 @@ return {
 	{
 		"3rd/image.nvim",
 		opts = {
+			integrations = {
+				typst = {
+					enabled = false,
+				},
+			},
 			backend = "kitty",
 			max_width = 100,
 			max_height = 12,

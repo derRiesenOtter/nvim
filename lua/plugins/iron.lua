@@ -18,6 +18,9 @@ return {
 						block_dividers = { "# %%", "#%%" },
 						env = { PYTHON_BASIC_REPL = "1" },
 					},
+					r = {
+						command = { "R" },
+					},
 				},
 				repl_filetype = function(bufnr, ft)
 					return ft

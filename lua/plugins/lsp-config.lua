@@ -10,5 +10,8 @@ return {
 				},
 			},
 		})
+		vim.lsp.config("tinymist", {
+			root_markers = { "main.typ" },
+		})
 	end,
 }
