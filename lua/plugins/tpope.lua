@@ -1,0 +1,31 @@
+return {
+	{
+		"tpope/vim-surround",
+	},
+	{
+		"tpope/vim-repeat",
+	},
+	{
+		"tpope/vim-speeddating",
+	},
+	{
+		"tpope/vim-fugitive",
+		keys = {
+			{ "<leader>gg", ":G<CR>" },
+			{ "<leader>ga", ":G add .<CR>" },
+			{ "<leader>gc", ":G commit <CR>" },
+			{ "<leader>gp", ":G push<CR>" },
+			{ "<leader>gP", ":G pull --rebase<CR>" },
+			{ "<leader>gw", ":Gwrite<CR>" },
+			{ "<leader>gr", ":Gread<CR>" },
+			{ "<leader>gs", ":G switch " },
+			{ "<leader>gd", ":Gdiff<CR>" },
+			{ "<leader>gh", ":G add --patch<CR>" },
+			{ "<leader>gb", ":Git blame<CR>" },
+			{ "<leader>gl", ":Gclog<CR>" },
+			{ "<leader>gx", ":GRemove<CR>" },
+			{ "<leader>gm", ":GMove " },
+			{ "<leader>gn", ":GRename " },
+		},
+	},
+}

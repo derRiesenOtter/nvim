@@ -29,7 +29,7 @@ vim.opt.winborder = "rounded"
 vim.opt.wrap = false
 vim.opt.scrolloff = 15
 vim.opt.showtabline = 0
-vim.opt.conceallevel = 2
+-- vim.opt.conceallevel = 2
 vim.opt.laststatus = 3
 
 vim.opt.ignorecase = true
@@ -152,7 +152,6 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 	},
-	install = { colorscheme = { "gruvbox" } },
 	checker = { enabled = false },
 	change_detection = {
 		enabled = false,

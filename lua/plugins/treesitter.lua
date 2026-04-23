@@ -1,4 +1,20 @@
-local langs = { "lua", "python", "cpp", "markdown", "markdown_inline", "json", "yaml", "latex" }
+local langs = {
+	"lua",
+	"python",
+	"r",
+	"julia",
+	"c",
+	"cpp",
+	"rust",
+	"markdown",
+	"markdown_inline",
+	"json",
+	"yaml",
+	"toml",
+	"latex",
+	"typst",
+}
+
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -25,14 +41,10 @@ return {
 			require("nvim-treesitter-textobjects").setup({
 				select = {
 					lookahead = true,
-					selection_modes = {
-						["@parameter.outer"] = "v",
-						["@function.outer"] = "V",
-						["@class.outer"] = "<c-v>",
-					},
 					include_surrounding_whitespace = false,
 				},
 			})
+
 			-- methods
 			vim.keymap.set({ "x", "o" }, "am", function()
 				require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")

@@ -21,6 +21,10 @@ return {
 					r = {
 						command = { "R" },
 					},
+					julia = {
+						command = { "julia", "--project=." },
+						format = common.bracketed_paste_python,
+					},
 				},
 				repl_filetype = function(bufnr, ft)
 					return ft
@@ -48,27 +52,5 @@ return {
 			},
 			ignore_blank_lines = true,
 		})
-		-- vim.api.nvim_create_autocmd("BufEnter", {
-		-- 	pattern = "*.py",
-		-- 	callback = function()
-		-- 		iron.setup({
-		-- 			keymaps = {
-		-- 				toggle_repl = "<localleader>r",
-		-- 				restart_repl = "<localleader>R",
-		-- 				visual_send = "<localleader>s",
-		-- 				send_file = "<localleader>A",
-		-- 				send_line = "<localleader>s",
-		-- 				send_paragraph = "<localleader>p",
-		-- 				send_until_cursor = "<localleader>a",
-		-- 				send_code_block = "<localleader>B",
-		-- 				send_code_block_and_move = "<localleader>b",
-		-- 				cr = "<localleader><cr>",
-		-- 				interrupt = "<localleader><C-c>",
-		-- 				exit = "<localleader>q",
-		-- 				clear = "<localleader>c",
-		-- 			},
-		-- 		})
-		-- 	end,
-		-- })
 	end,
 }

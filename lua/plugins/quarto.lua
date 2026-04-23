@@ -8,7 +8,7 @@ return {
 	config = function()
 		require("quarto").setup({
 			lspFeatures = {
-				languages = { "python" },
+				languages = { "python", "julia", "r" },
 				chunks = "all",
 				diagnostics = {
 					enabled = true,
