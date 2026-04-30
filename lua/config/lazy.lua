@@ -157,3 +157,5 @@ require("lazy").setup({
 		enabled = false,
 	},
 })
+
+-- vim.lsp.enable("julials")
