@@ -45,14 +45,13 @@ return {
 				},
 			},
 			picker = { enabled = true },
-			notifier = { enabled = false },
 			scroll = { enabled = true },
-			input = { enabled = false },
+			input = { enabled = true },
 			image = {
 				doc = {
 					inline = false,
-					max_width = 80,
-					max_height = 30,
+					max_width = 40,
+					max_height = 10,
 				},
 				math = { enabled = false },
 			},
@@ -65,8 +64,6 @@ return {
 				end
 			end,
 		})
-		vim.ui.input = Snacks.input
-		vim.ui.select = Snacks.picker.select
 	end,
 	keys = {
 		{
