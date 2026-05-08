@@ -4,5 +4,10 @@ return {
 	dependencies = {
 		{ "mason-org/mason.nvim", opts = {} },
 		"neovim/nvim-lspconfig",
+		config = function()
+			vim.lsp.config("tinymist", {
+				root_markers = { "main.typ" },
+			})
+		end,
 	},
 }
