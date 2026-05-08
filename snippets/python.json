@@ -1,0 +1,21 @@
+{
+  "Cell Separator": {
+    "prefix": "co",
+    "body": [
+      "# %%",
+      "$1"
+    ],
+    "description": "Code cell separator"
+  },
+  "Markdown Cell": {
+    "prefix": "md",
+    "body": [
+      "# %% [md]",
+      "\"\"\"",
+      "$1",
+      "\"\"\"",
+      ""
+    ],
+    "description": "Markdown cell block"
+  }
+}

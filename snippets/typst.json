@@ -1,0 +1,37 @@
+{
+  "Figure Table": {
+    "prefix": "table",
+    "body": [
+      "#figure(",
+      "  table(",
+      "    columns: $1",
+      "  )$2,",
+      "  caption: [$3]",
+      ") <tbl_$4>"
+    ],
+    "description": "Table figure"
+  },
+  "Figure Image": {
+    "prefix": "image",
+    "body": [
+      "#figure(",
+      "  image(\"$1\", width: 100%),",
+      "  caption: [$2]",
+      ") <img_$3>"
+    ],
+    "description": "Image figure"
+  },
+  "Figure Grid": {
+    "prefix": "image_grid",
+    "body": [
+      "#subpar.grid(",
+      "  figure(image(\"$1\"), caption: [$2]) <img_$3>,",
+      "  figure(image(\"$4\"), caption: [$5]) <img_$6>,",
+      "  columns: (1fr, 1fr),",
+      "  caption: [$7],",
+      "  label: <img_$8>",
+      ")"
+    ],
+    "description": "Two-image grid figure"
+  }
+}

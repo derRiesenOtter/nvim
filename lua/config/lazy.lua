@@ -40,7 +40,6 @@ vim.opt.smartindent = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.expandtab = true
-vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python3")
 
 vim.diagnostic.config({
 	virtual_text = true,
@@ -56,28 +55,24 @@ vim.diagnostic.config({
 })
 
 vim.keymap.set("t", "<ESC>", "<C-\\><C-N>")
-vim.keymap.set("n", "<leader>m", ":make")
-vim.keymap.set("n", "<leader>l", ":b #<CR>")
-vim.keymap.set("i", "<C-r>", "<Right>")
-vim.keymap.set("i", "<C-e>", "<Left>")
-vim.keymap.set("i", "<C-a>", "<C-o>_")
-vim.keymap.set("i", "<C-f>", "<C-o>$")
-vim.keymap.set("i", "<C-b>", "<C-o>b")
-vim.keymap.set("i", "<C-w>", "<C-o>w")
 vim.keymap.set("n", "<localleader>i", ":IronRepl<CR>")
+
+vim.keymap.set("n", "<leader>c", function()
+	vim.opt.number = not vim.opt.number:get()
+	vim.opt.relativenumber = vim.opt.number:get()
+	if vim.opt.signcolumn:get() == "no" then
+		vim.opt.signcolumn = "yes"
+	else
+		vim.opt.signcolumn = "no"
+	end
+	local vt = vim.diagnostic.config().virtual_text
+	vim.diagnostic.config({ virtual_text = not vt })
+end, { desc = "Toggle UI clutter" })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*.md", "*.typ" },
 	callback = function()
 		vim.opt.spell = true
-	end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "AvanteInput",
-	callback = function(event)
-		vim.keymap.set("i", "<C-h>", "<Esc><C-w>h", { buffer = event.buf })
-		vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", { buffer = event.buf })
 	end,
 })
 
@@ -95,59 +90,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- automatically import output chunks from a jupyter notebook
--- tries to find a kernel that matches the kernel in the jupyter notebook
--- falls back to a kernel that matches the name of the active venv (if any)
-local imb = function(e) -- init molten buffer
-	vim.schedule(function()
-		local kernels = vim.fn.MoltenAvailableKernels()
-		local try_kernel_name = function()
-			local metadata = vim.json.decode(io.open(e.file, "r"):read("a"))["metadata"]
-			return metadata.kernelspec.name
-		end
-		local ok, kernel_name = pcall(try_kernel_name)
-		if not ok or not vim.tbl_contains(kernels, kernel_name) then
-			kernel_name = nil
-			local venv = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX")
-			if venv ~= nil then
-				kernel_name = string.match(venv, "/.+/(.+)")
-			end
-		end
-		if kernel_name ~= nil and vim.tbl_contains(kernels, kernel_name) then
-			vim.cmd(("MoltenInit %s"):format(kernel_name))
-		end
-		vim.cmd("MoltenImportOutput")
-	end)
-end
-
--- automatically import output chunks from a jupyter notebook
-vim.api.nvim_create_autocmd("BufAdd", {
-	pattern = { "*.ipynb" },
-	callback = imb,
-})
-
--- we have to do this as well so that we catch files opened like nvim ./hi.ipynb
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = { "*.ipynb" },
-	callback = function(e)
-		if vim.api.nvim_get_vvar("vim_did_enter") ~= 1 then
-			imb(e)
-		end
-	end,
-})
-
--- automatically export output chunks to a jupyter notebook on write
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = "*.ipynb",
-	callback = function()
-		if require("molten.status").initialized() == "Molten" then
-			vim.schedule(function()
-				vim.cmd("MoltenExportOutput!")
-			end)
-		end
-	end,
-})
-
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
@@ -157,5 +99,3 @@ require("lazy").setup({
 		enabled = false,
 	},
 })
-
--- vim.lsp.enable("julials")
